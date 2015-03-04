@@ -82,16 +82,16 @@
 
 		this.getModes = function(TABLE) {
 			// CHOOSE BEST PATH
-			MODE_1 = this.createArray(TABLE, function(arr,r,c){
+			var MODE_1 = this.createArray(TABLE, function(arr,r,c){
 				return TABLE[r][c] + this.applyFnOnCells(arr, r, c, Math.max, 0);
 			}.bind(this));
 			// CALCULATE ENEMY TOO
-			MODE_2 = this.createArray(TABLE, function(arr,r,c){
+			var MODE_2 = this.createArray(TABLE, function(arr,r,c){
 				if((r+c)%2===0) return TABLE[r][c] + this.applyFnOnCells(arr, r, c, Math.max, 0);
 				else return TABLE[r][c] + this.applyFnOnCells(MODE_1, r, c, Math.min, 0);
 			}.bind(this));
 			// BEST ALGORITHM
-			MODE_3 = this.createArray(TABLE, function(arr,r,c) {
+			var MODE_3 = this.createArray(TABLE, function(arr,r,c) {
 				var player1 = function(x, y) {
 					var value = this.getCell(TABLE, r, c,0);
 					if (y === undefined) return value + x;
